@@ -10,6 +10,7 @@
 #include <time.h>
 #include <stdarg.h>
 #include <ctype.h>
+#include <sys/file.h>
 #include "console.h"
 
 
@@ -96,8 +97,13 @@ static int console_log(const char *file, int line, const char *fmt, ...){
     }
     fp = fopen(console.log_file, "a");
     if(fp){
+        flock(fileno(fp), LOCK_SH);
+        fseek(fp, 0, SEEK_END);
+
         fprintf(fp, "[%s][%s:%d] ", console_time(timestr),file,line);
         vfprintf(fp, fmt, ap);
+
+        flock(fileno(fp), LOCK_UN);
         fclose(fp);
     }
     
