@@ -97,7 +97,7 @@ static int console_log(const char *file, int line, const char *fmt, ...){
     }
     fp = fopen(console.log_file, "a");
     if(fp){
-        flock(fileno(fp), LOCK_SH);
+        flock(fileno(fp), LOCK_EX);
         fseek(fp, 0, SEEK_END);
 
         fprintf(fp, "[%s][%s:%d] ", console_time(timestr),file,line);
