@@ -69,6 +69,7 @@ static int console_print(const char *fmt, ...){
         <= console_read_level_file(console.level_file))
     {
         retv = vprintf(new_fmt, ap);
+        fflush(stdout);
     }
     
     va_end(ap);
@@ -92,6 +93,7 @@ static int console_log(const char *file, int line, const char *fmt, ...){
     va_start(ap, fmt);
 
     retv = printf("[LOG] ") + vprintf(fmt, ap);
+    fflush(stdout);
     if(!console.log_file){
         return retv;
     }
