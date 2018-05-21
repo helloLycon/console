@@ -2,8 +2,8 @@
  * @brief   A method of printing with several levels(refering to `printk`) and logging messages into log-file.
  *
  * @author  lycon
- * @blog    https://lk361115629.github.io/
- * @github  https://github.com/lk361115629
+ * @blog    https://hellolycon.github.io/
+ * @github  https://github.com/helloLycon/
  */
 #include <stdio.h>
 #include <string.h>
